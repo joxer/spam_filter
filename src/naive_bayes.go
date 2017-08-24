@@ -9,12 +9,20 @@ import (
 )
 
 func main() {
-
+	var spam []string
+	var ham []string
 	data, _ := common.OpenFile("/home/joxer/code/go/spam_filter/data/dataset.csv")
 	testset, _ := common.OpenFile("/home/joxer/code/go/spam_filter/data/testset.csv")
-	spam, ham := common.GetNames(data[0:200])
-	fmt.Println(spam)
-	fmt.Println(ham)
+	s_data, s_err := common.OpenFileWords("spam.txt")
+	h_data, h_err := common.OpenFileWords("ham.txt")
+
+	if( s_err != nil && h_err != nil) {
+		spam, ham = common.GetNames(data[0:300])
+		common.WriteFile("spam.txt", spam)
+		common.WriteFile("ham.txt", ham)
+	} else{
+		spam, ham = s_data, h_data
+	}
 	classifier := bayes.NewClassifier("Good", "Bad")
 	classifier.Learn(ham, "Good")
 	classifier.Learn(spam, "Bad")

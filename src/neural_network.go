@@ -13,7 +13,7 @@ import (
 
 func main(){
      LEN_TRAIN := 10
-     LEN_TEST := 200
+     LEN_TEST := 300
      var spam []string
      var ham []string
      s_data, s_err := common.OpenFileWords("spam.txt")

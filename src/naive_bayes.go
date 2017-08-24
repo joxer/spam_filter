@@ -3,8 +3,7 @@ package main
 import (
 	"fmt"
 	"github.com/jdkato/prose/tokenize"
-	"github.com/jdkato/prose/tag"
-	"strings"
+
 	"./bayes"
 	"./common"
 )
